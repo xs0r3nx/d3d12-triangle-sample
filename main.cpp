@@ -157,7 +157,7 @@ private:
 		if (FAILED(hr))
 		{
 #ifndef NDEBUG
-			//if in debug mode you will receive a sexy debug message!
+			//if in debug mode you will receive a debug message!
 			std::cerr << "HRESULT failed: 0x" << std::hex << hr << std::endl;
 #endif
 			throw std::exception();
@@ -256,9 +256,9 @@ private:
 			hInstance,                      //passing our instance
 			NULL                            //we don't have any extra data we need give to wndProc and . so NULL again.
 		);
-		//this is the hack type bullshit we have here.
-		//it's purpose is only to give us arbitrary bullshit when we need to access class members in a static function
-		//via the reinterpret cast sorry not sorry
+		//this is the hack type voodoo we have here.
+		//it's purpose is only to give us arbitrary ptr when we need to access class members in a static function
+		//via the reinterpret cast sorry not sorry.
 		SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
 
@@ -316,7 +316,7 @@ private:
 		//thought to explain another thing to ya about ComPtr naming conventions.
 		//Microsoft::WRL::ComPtr<I<OBJECT_NAME><VERSION>>.
 		//by IDXGIFactory4 we mean interface of DXGIFactory object version 4.
-		//each version adds new capabilities — v4 supports features like adapter enumeration with flags.
+		//each version adds new capabilities Â— v4 supports features like adapter enumeration with flags.
 		//i think you remember IDXGISwapChain3 now xD. same naming logic.
 		Microsoft::WRL::ComPtr<IDXGIFactory4> factory;
 		
@@ -408,7 +408,7 @@ private:
 		//this demo doesn't support fullscreening. so we disable alt_enter for it so you can't fullscreen.
 		throwIfFailed(factory->MakeWindowAssociation(hWnd, DXGI_MWA_NO_ALT_ENTER));
 		//getting the current back buffer index from the swap chain.
-		//this tells us which render target to use — it cycles between 0 and 1 in double buffering
+		//this tells us which render target to use Â— it cycles between 0 and 1 in double buffering
 		frameIndex = swapChain->GetCurrentBackBufferIndex();
 
 		//descriptor heap creation. i told you what it does.
@@ -535,13 +535,13 @@ private:
 			//beautiful triangle vertices
 			Vertex triangleVertices[] =
 			{
-				// Top vertex — bright violet
+				// Top vertex bright violet
 				{ { 0.0f, 0.25f * aspectRatio, 0.0f }, { 0.8f, 0.0f, 0.8f, 1.0f } },
 
-				// Bottom right — deep blue
+				// Bottom right deep blue
 				{ { 0.25f, -0.25f * aspectRatio, 0.0f }, { 0.2f, 0.0f, 0.6f, 1.0f } },
 
-				// Bottom left — rich red
+				// Bottom left rich red
 				{ { -0.25f, -0.25f * aspectRatio, 0.0f }, { 0.6f, 0.0f, 0.2f, 1.0f } }
 			};
 			//setting the size of our vertex buffer
@@ -785,7 +785,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdline
 	//for case of failure
 	catch (const std::exception& e)
 	{
-		//tells you what you did wrong i guess
+		//gives you the exception error.
 		std::cerr << "ERROR: " << e.what() << std::endl;
 		return EXIT_FAILURE;
 	}
